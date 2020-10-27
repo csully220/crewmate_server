@@ -17,12 +17,14 @@ class Task(models.Model):
 
     def save(self, *args, **kwargs):
         self.deadline = timezone.now()
-        td = timedelta(days=1)
+        td = timedelta(days=0)
         if self.freq == 'd':
-            td = timedelta(days=2)
+            td = timedelta(days=0)
             self.deadline = self.created + td
         elif self.freq == 'w':
-            td = timedelta(days=3)
+            today = self.created.weekday()
+            daystilsunday = 6 - today
+            td = timedelta(days=daystilsunday)
             self.deadline = self.created + td
         elif self.freq == 'b':
             td = timedelta(days=4)
