@@ -16,7 +16,7 @@ class Task(models.Model):
     deadline = models.DateTimeField(blank=True,null=True)
 
     def save(self, *args, **kwargs):
-        self.deadline = timezone.now()
+        self.deadline = django.utils.timezone.now()
         td = timedelta(days=0)
         if self.freq == 'd':
             td = timedelta(days=0)
