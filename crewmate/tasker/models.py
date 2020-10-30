@@ -3,20 +3,43 @@ from django.utils import timezone
 from datetime import datetime, timedelta
 
 # Create your models here.
+class Player(models.Model):
+    name = models.CharField(max_length=15)
+    COLORS = [('blue','Blue'),
+              ('black','Black'),
+              ('white','White'),
+              ('yellow','Yellow'),
+              ('orange','Orange'),
+              ('pink','Pink'),
+              ('red','Red'),
+              ('purple','Purple'),
+              ('brown','Brown'),
+              ('green','Green'),
+              ('cyan','Cyan'),
+              ('lime','Lime'),]
+    color = models.CharField(max_length=20, choices=COLORS, default='wht')
+    created = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.name
+
+
 class Task(models.Model):
-    created = models.DateTimeField(default=timezone.now())
+    assignee = models.ForeignKey(Player, on_delete=models.SET_NULL, null=True)
     desc = models.CharField(max_length=60)
-    freq_choices = [('d','daily'),
+    location = models.CharField(max_length=20)
+    FREQUENCIES = [('d','daily'),
                     ('w','weekly'),
                     ('b','biweekly'), 
                     ('m','monthly'),
                     ('q','quarterly')]
-    freq = models.CharField(max_length=20, choices=freq_choices, default='d')
-
+    freq = models.CharField(max_length=20, choices=FREQUENCIES, default='d')
     deadline = models.DateTimeField(blank=True,null=True)
+    complete = models.BooleanField(default=False)
+    created = models.DateTimeField(default=timezone.now)
 
     def save(self, *args, **kwargs):
-        self.deadline = django.utils.timezone.now()
+        self.deadline = timezone.now
         td = timedelta(days=0)
         if self.freq == 'd':
             td = timedelta(days=0)
@@ -39,3 +62,4 @@ class Task(models.Model):
 
     def __str__(self):
         return self.desc
+

@@ -3,10 +3,11 @@ from .views import TaskList
 from . import views
 
 from rest_framework import routers
-from .views import TaskViewSet
+from .views import TaskViewSet, PlayerViewSet
 
 router = routers.DefaultRouter()
-router.register(r'api', TaskViewSet)
+router.register(r'api/tasks', TaskViewSet)
+router.register(r'api/players', PlayerViewSet)
 
 
 urlpatterns = [

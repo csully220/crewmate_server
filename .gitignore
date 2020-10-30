@@ -1,0 +1,5 @@
+crewmate/crewmate/__pycache__/
+crewmate/tasker/__pycache__/
+__pycache__/
+crewmate/tasker/migrations
+*.pyc
