@@ -27,13 +27,19 @@ class Player(models.Model):
 class Task(models.Model):
     assignee = models.ForeignKey(Player, on_delete=models.SET_NULL, null=True)
     desc = models.CharField(max_length=60)
-    location = models.CharField(max_length=20)
-    FREQUENCIES = [('d','daily'),
+    location = models.CharField(max_length=20, default='Kitchen')
+    recurring = models.BooleanField(default=True)
+    FREQUENCIES = [ ('o','once'),
+                    ('d','daily'),
                     ('w','weekly'),
                     ('b','biweekly'), 
                     ('m','monthly'),
-                    ('q','quarterly')]
-    freq = models.CharField(max_length=20, choices=FREQUENCIES, default='d')
+                    ('q','quarterly') ]
+    freq_def = 'd'
+    if recurring == False:
+        freq_def = 'o'
+    
+    freq = models.CharField(max_length=20, choices=FREQUENCIES, default=freq_def)
     deadline = models.DateTimeField(blank=True,null=True)
     complete = models.BooleanField(default=False)
     created = models.DateTimeField(default=timezone.now)
