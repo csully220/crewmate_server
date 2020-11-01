@@ -27,44 +27,24 @@ class Player(models.Model):
 class Task(models.Model):
     assignee = models.ForeignKey(Player, on_delete=models.SET_NULL, null=True)
     desc = models.CharField(max_length=60)
-    location = models.CharField(max_length=20, default='Kitchen')
-    recurring = models.BooleanField(default=True)
-    FREQUENCIES = [ ('o','once'),
-                    ('d','daily'),
-                    ('w','weekly'),
-                    ('b','biweekly'), 
-                    ('m','monthly'),
-                    ('q','quarterly') ]
-    freq_def = 'd'
-    if recurring == False:
-        freq_def = 'o'
-    
-    freq = models.CharField(max_length=20, choices=FREQUENCIES, default=freq_def)
-    deadline = models.DateTimeField(blank=True,null=True)
+    location = models.CharField(max_length=20, default='N/A')
+
+    once = models.BooleanField(default=False)
+    monday = models.BooleanField(default=False)
+    tuesday = models.BooleanField(default=False)
+    wednesday = models.BooleanField(default=False)
+    thursday = models.BooleanField(default=False)
+    friday = models.BooleanField(default=False)
+    saturday = models.BooleanField(default=False)
+    sunday = models.BooleanField(default=False)
+    biweekly = models.BooleanField(default=False)
+    duethiswk = models.BooleanField(default=False)
+    monthly = models.BooleanField(default=False)
+    quarterly = models.BooleanField(default=False)
+
     complete = models.BooleanField(default=False)
     created = models.DateTimeField(default=timezone.now)
-
-    def save(self, *args, **kwargs):
-        self.deadline = timezone.now
-        td = timedelta(days=0)
-        if self.freq == 'd':
-            td = timedelta(days=0)
-            self.deadline = self.created + td
-        elif self.freq == 'w':
-            today = self.created.weekday()
-            daystilsunday = 6 - today
-            td = timedelta(days=daystilsunday)
-            self.deadline = self.created + td
-        elif self.freq == 'b':
-            td = timedelta(days=4)
-            self.deadline = self.created + td
-        elif self.freq == 'm':
-            td = timedelta(days=5)
-            self.deadline = self.created + td
-        elif self.freq == 'q':
-            td = timedelta(days=6)
-            self.deadline = self.created + td
-        super().save(*args, **kwargs)  # Call the "real" save() method.
+    updated = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.desc
