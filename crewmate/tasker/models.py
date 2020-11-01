@@ -45,6 +45,7 @@ class Task(models.Model):
     complete = models.BooleanField(default=False)
     created = models.DateTimeField(default=timezone.now)
     updated = models.DateTimeField(default=timezone.now)
+    last_completed = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.desc
