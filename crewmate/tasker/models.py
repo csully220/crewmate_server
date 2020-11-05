@@ -1,6 +1,5 @@
 from django.db import models
-from django.utils import timezone
-from datetime import datetime, timedelta
+from datetime import datetime
 
 # Create your models here.
 class Player(models.Model):
@@ -18,7 +17,7 @@ class Player(models.Model):
               ('cyan','Cyan'),
               ('lime','Lime'),]
     color = models.CharField(max_length=20, choices=COLORS, default='wht')
-    created = models.DateTimeField(default=timezone.now)
+    created = models.DateTimeField(default=datetime.now())
 
     def __str__(self):
         return self.name
@@ -43,9 +42,16 @@ class Task(models.Model):
     quarterly = models.BooleanField(default=False)
 
     complete = models.BooleanField(default=False)
-    created = models.DateTimeField(default=timezone.now)
-    updated = models.DateTimeField(default=timezone.now)
-    last_completed = models.DateTimeField(default=timezone.now)
+    created = models.DateTimeField(default=datetime.now())
+    updated = models.DateTimeField()
+    updated.auto_now = True
+    last_completed = models.DateTimeField(blank=True)
+
+    def save(self, *args, **kwargs):
+        if self.complete:
+            self.last_completed = datetime.now()
+        super(Task,self).save(*args, **kwargs)
+
 
     def __str__(self):
         return self.desc
