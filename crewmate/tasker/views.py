@@ -29,14 +29,12 @@ class TasksViewSet(viewsets.ModelViewSet):
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
 
-
 class PlayerViewSet(viewsets.ModelViewSet):
     queryset = Player.objects.all()
     serializer_class = PlayerSerializer
 
 class TaskList(ListView):
     model = Task
-
 
 def index(request):
     task_list = Task.objects.all()[:5]
