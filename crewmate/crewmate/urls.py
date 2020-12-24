@@ -20,9 +20,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('', RedirectView.as_view(url='tasker/', permanent=True)),
+    path('', RedirectView.as_view(url='tasks/', permanent=True)),
     path('admin/', admin.site.urls),
-    path('tasker/', include('tasker.urls')),
+    path('tasks/', include('tasks.urls')),
+    path('taskapi/', include('taskapi.urls')),
+    path('taskcalendar/', include('taskcalendar.urls')),
+    path('schedule/', include('schedule.urls')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
