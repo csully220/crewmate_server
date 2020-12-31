@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <p>Welcome to Task Calendar</p>
+  <h1>Calendars</h1>
+  {% for cal in calendar_list %}
+  <a href="{% url 'taskcalendar:calendar' cal.slug %}"><h4>{{ cal.name }}</h4></a>
+  {% endfor %}
+{% endblock %}

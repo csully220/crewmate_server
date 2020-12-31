@@ -3,4 +3,5 @@
 {% block content %}
   <h1>Task Calendar</h1>
   <p>Welcome to Task Calendar</p>
+  <a href="{% url 'taskcalendars:calendars' %}">{{ c.name }}</a>
 {% endblock %}

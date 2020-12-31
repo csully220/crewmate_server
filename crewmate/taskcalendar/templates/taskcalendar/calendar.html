@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <p>Welcome to Task Calendar</p>
+  <h3>{{ calendar.name }}</h3>
+  <p>{{ calendar.slug }}</p>
+  {% for e in events %}
+      <p>{{ e.title }}</p>
+  {% endfor %}
+{% endblock %}
