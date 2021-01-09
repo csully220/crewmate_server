@@ -2,4 +2,6 @@ crewmate/crewmate/__pycache__/
 crewmate/tasker/__pycache__/
 __pycache__/
 crewmate/tasker/migrations
+crewmate/tasks/migrations
+crewmate/taskcalendar/migrations
 *.pyc

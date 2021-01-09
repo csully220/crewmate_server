@@ -6,4 +6,6 @@ app_name='taskcalendar'
 urlpatterns = [ path('', views.index, name='index'),
         path('calendars/', views.calendars, name='calendars'),
         path('calendar/<slug:slug>/', views.calendar, name='calendar'),
+        path('month/<slug:slug>/', views.month, name='month'),
+        path('week/<slug:slug>/', views.week, name='week'),
               ]

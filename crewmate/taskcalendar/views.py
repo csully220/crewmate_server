@@ -1,7 +1,10 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
+import django.utils.timezone
 from schedule.models import Calendar
 from schedule.models import Event
+from schedule.periods import Period, Month, Week
+import datetime
 
 # Create your views here.
 
@@ -21,7 +24,26 @@ def calendars(request):
 def calendar(request, slug):
     calendar = Calendar.objects.get(slug=slug)
     events = Event.objects.filter(calendar=calendar)
+    tz = datetime.timezone.now(tz='UTC')
+    period = Period(datetime.datetime.now(tz=tz))
     print(events)
     context = {'calendar': calendar, 'events':events}
     return render(request, 'taskcalendar/calendar.html', context)
 
+def month(request, slug):
+    c = Calendar.objects.get(slug=slug)
+    ev = Event.objects.filter(calendar=c)
+    now = datetime.datetime.now(tz=datetime.timezone.utc)
+    p = Month(ev, now)
+    oc = p.get_occurrences()
+    context = {'calendar': c, 'occurrences':oc, 'period':p}
+    return render(request, 'taskcalendar/month.html', context)
+
+def week(request, slug):
+    c= Calendar.objects.get(slug=slug)
+    ev= Event.objects.filter(calendar=c)
+    now = datetime.datetime.now(tz=datetime.timezone.utc)
+    p = Week(ev, now)
+    oc = p.get_occurrences()
+    context = {'calendar': c, 'occurrences':oc, 'period':p}
+    return render(request, 'taskcalendar/week.html', context)

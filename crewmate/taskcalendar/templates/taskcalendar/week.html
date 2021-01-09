@@ -2,9 +2,8 @@
 
 {% block content %}
   <h1>Task Calendar</h1>
-  <h3>{{ calendar.name }} Month View</h3>
+  <h3>{{ calendar.name }} Week View</h3>
   <a href="{% url 'taskcalendar:week' calendar.slug %}"><h4>Weekly view</h4></a>
-
   <ol>
   {% for o in occurrences %}
     <li>
