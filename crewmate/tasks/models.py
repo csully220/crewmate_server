@@ -28,10 +28,9 @@ class Player(models.Model):
 class Task(models.Model):
     assignee = models.ForeignKey(Player, on_delete=models.SET_NULL, null=True)
     event = models.ForeignKey(schedule.models.Event, on_delete=models.SET_NULL, null=True)
-    desc = models.CharField(max_length=60)
     LOCATIONS = [('livingroom', 'Living Room'),
                  ('kitchen', 'Kitchen'),
-                 ('mstr_bed', 'Master Bedroom'),
+                 ('masterbed', 'Master Bedroom'),
                  ('masterbath', 'Master Bath'),
                  ('bed1', 'Bedroom 1'),
                  ('bed2', 'Bedroom 2'),
@@ -46,6 +45,22 @@ class Task(models.Model):
 
     location = models.CharField(max_length=30, choices=LOCATIONS, default='livingroom')
 
+
+    RRULES = [('daily','Every day'),
+              ('weekday','Every weekday'),
+              ('weekly','Weekly'),
+              ('weekend','Weekends'),
+              ('monthly','Monthly'),
+              ('0','Mondays'),
+              ('1','Tuesdays'),
+              ('2','Wednesdays'),
+              ('3','Thursdays'),
+              ('4','Fridays'),
+              ('5','Saturdays'),
+              ('6','Sundays'),
+              ('once','Once'),]
+
+    schedule = models.CharField(max_length=30, choices=RRULES, default='weekly')
     #once = models.BooleanField(default=False)
     #monday = models.BooleanField(default=False)
     #tuesday = models.BooleanField(default=False)
@@ -59,16 +74,7 @@ class Task(models.Model):
     #monthly = models.BooleanField(default=False)
     #quarterly = models.BooleanField(default=False)
 
-    complete = models.BooleanField(default=False)
-    created = models.DateTimeField(auto_now_add = True)
-    updated = models.DateTimeField(auto_now = True)
-    last_completed = models.DateTimeField(auto_now_add=True)
-
-    def save(self, *args, **kwargs):
-        if self.complete:
-            self.last_completed = django.utils.timezone.now()
-        return super(Task,self).save(*args, **kwargs)
 
     def __str__(self):
-        return self.desc
+        return self.event.title
 

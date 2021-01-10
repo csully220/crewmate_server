@@ -3,7 +3,7 @@ from .models import Task, Player
 
 # Register your models here.
 class TaskAdmin(admin.ModelAdmin):
-        readonly_fields = ['last_completed']
+        readonly_fields = []
 
 
 admin.site.register(Task, TaskAdmin)

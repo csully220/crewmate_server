@@ -5,6 +5,6 @@
   <h1>Task Calendar</h1>
   <h3>Calendars</h3>
   {% for cal in calendar_list %}
-    <a href="{% url 'taskcalendar:month' calendar.slug %}"><h4>{{ cal.name }}</h4></a>
+    <a href="{% url 'taskcalendar:month' cal.slug %}"><h4>{{ cal.name }}</h4></a>
   {% endfor %}
 {% endblock %}
