@@ -12,6 +12,15 @@ def index(request):
 
 
 def task_list(request):
-    task_list = Task.objects.all()[:5]
-    context = {'task_list': task_list}
+    task_list = Task.objects.order_by('assignee')
+    #task_list = Task.objects.all()
+    players = []
+    prev_plyrname = ' '
+    for t in task_list:
+        if t.assignee.name != prev_plyrname:
+            prev_plyrname = t.assignee.name
+            players.append(t.assignee)
+
+    context = {'task_list': task_list, 'players':players}
+    
     return render(request, 'tasks/task_list.html', context)

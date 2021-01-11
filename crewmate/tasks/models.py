@@ -21,6 +21,11 @@ class Player(models.Model):
     color = models.CharField(max_length=20, choices=COLORS, default='wht')
     created = models.DateTimeField(default=django.utils.timezone.now)
 
+    def get_tasks(self):
+        tasks = Task.objects.all().filter(assignee=self)
+        print(tasks)
+        return tasks
+
     def __str__(self):
         return self.name
 
@@ -50,6 +55,7 @@ class Task(models.Model):
               ('weekday','Every weekday'),
               ('weekly','Weekly'),
               ('weekend','Weekends'),
+              ('eoweekend','Every other weekend'),
               ('monthly','Monthly'),
               ('0','Mondays'),
               ('1','Tuesdays'),
