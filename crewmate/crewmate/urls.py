@@ -22,7 +22,6 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('', RedirectView.as_view(url='tasks/', permanent=True)),
     path('admin/', admin.site.urls),
-    path('tasks/', include('tasks.urls')),
     path('taskapi/', include('taskapi.urls')),
     path('taskcalendar/', include('taskcalendar.urls')),
     path('schedule/', include('schedule.urls')),

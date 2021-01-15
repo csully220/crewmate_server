@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from tasks.models import Task, Player
+from taskcalendar.models import Task, Player
 
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework import viewsets

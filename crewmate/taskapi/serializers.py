@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from tasks.models import Task, Player
+from taskcalendar.models import Task, Player
 
 class TaskSerializer(serializers.ModelSerializer):
     class Meta:
