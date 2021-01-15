@@ -2,7 +2,7 @@ import datetime
 from schedule.models import Calendar
 #from schedule.models import Event
 from schedule.periods import Period, Week, Day, Month
-from .models import Task
+from taskcalendar.models import Task
 
 
 cl = Calendar.objects.all()
@@ -10,7 +10,7 @@ cl = Calendar.objects.all()
 for c in cl:
     print(c.slug)
 
-c = cl[5]
+c = cl[0]
 
 c = Calendar.objects.get(slug=c.slug)
 
