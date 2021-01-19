@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from taskcalendar.models import Task, Player
-from schedule.models import Occurrence
+from schedule.models import Occurrence, Calendar
 
 class TaskSerializer(serializers.ModelSerializer):
     class Meta:
@@ -16,3 +16,9 @@ class OccurrenceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Occurrence
         fields = '__all__'
+
+class CalendarSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Calendar
+        fields = '__all__'
+
