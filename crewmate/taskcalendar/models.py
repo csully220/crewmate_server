@@ -19,6 +19,7 @@ class Player(models.Model):
               ('cyan','Cyan'),
               ('lime','Lime'),]
     color = models.CharField(max_length=20, choices=COLORS, default='wht')
+    calendar = models.ForeignKey('schedule.Calendar', on_delete=models.SET_NULL, null=True)
     created = models.DateTimeField(default=django.utils.timezone.now)
 
     def get_tasks(self):
@@ -49,37 +50,6 @@ class Task(schedule.models.Event):
                  ('na', 'N/A'),]
 
     location = models.CharField(max_length=30, choices=LOCATIONS, default='livingroom')
-
-
-#    RRULES = [('daily','Every day'),
-#              ('weekday','Every weekday'),
-#              ('weekly','Weekly'),
-#              ('weekend','Weekends'),
-#              ('eoweekend','Every other weekend'),
-#              ('monthly','Monthly'),
-#              ('0','Mondays'),
-#              ('1','Tuesdays'),
-#              ('2','Wednesdays'),
-#              ('3','Thursdays'),
-#              ('4','Fridays'),
-#              ('5','Saturdays'),
-#              ('6','Sundays'),
-#              ('once','Once'),]
-#
-#    schedule = models.CharField(max_length=30, choices=RRULES, default='weekly')
-    #once = models.BooleanField(default=False)
-    #monday = models.BooleanField(default=False)
-    #tuesday = models.BooleanField(default=False)
-    #wednesday = models.BooleanField(default=False)
-    #thursday = models.BooleanField(default=False)
-    #friday = models.BooleanField(default=False)
-    #saturday = models.BooleanField(default=False)
-    #sunday = models.BooleanField(default=False)
-    #biweekly = models.BooleanField(default=False)
-    #duethiswk = models.BooleanField(default=False)
-    #monthly = models.BooleanField(default=False)
-    #quarterly = models.BooleanField(default=False)
-
 
     def __str__(self):
         return self.title

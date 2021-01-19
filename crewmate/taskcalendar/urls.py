@@ -8,4 +8,5 @@ urlpatterns = [ path('', views.index, name='index'),
         path('calendar/<slug:slug>/', views.calendar, name='calendar'),
         path('month/<slug:slug>/', views.month, name='month'),
         path('week/<slug:slug>/', views.week, name='week'),
+        path('tasklist/', views.tasklist, name='tasklist'),
               ]

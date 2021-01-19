@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
-import django.utils.timezone
-from schedule.models import Calendar
-from schedule.models import Event
+#import django.utils.timezone
+from schedule.models import Calendar, Event
+from taskcalendar.models import Task
 from schedule.periods import Period, Month, Week
 import datetime
 
@@ -47,3 +47,9 @@ def week(request, slug):
     oc = p.get_occurrences()
     context = {'calendar': c, 'occurrences':oc, 'period':p}
     return render(request, 'taskcalendar/week.html', context)
+
+def tasklist(request):
+    tasks = Task.objects.all()
+    context = {'tasks' : tasks}
+    return render(request, 'taskcalendar/tasklist.html', context)
+

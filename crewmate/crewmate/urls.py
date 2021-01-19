@@ -20,7 +20,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('', RedirectView.as_view(url='tasks/', permanent=True)),
+    path('', RedirectView.as_view(url='taskcalendar/', permanent=True)),
     path('admin/', admin.site.urls),
     path('taskapi/', include('taskapi.urls')),
     path('taskcalendar/', include('taskcalendar.urls')),

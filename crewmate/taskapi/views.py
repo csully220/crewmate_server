@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from taskcalendar.models import Task, Player
+from schedule.models import CalendarRelation, Occurrence
 
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from .serializers import TaskSerializer, PlayerSerializer
+from .serializers import TaskSerializer, PlayerSerializer, OccurrenceSerializer
 
 # Create your views here.
 
@@ -28,3 +29,7 @@ class TasksViewSet(viewsets.ModelViewSet):
 class PlayerViewSet(viewsets.ModelViewSet):
     queryset = Player.objects.all()
     serializer_class = PlayerSerializer
+
+class OccurrenceViewSet(viewsets.ModelViewSet):
+    queryset = Occurrence.objects.all()
+    serializer_class = OccurrenceSerializer
