@@ -2,14 +2,12 @@
 
 {% block content %}
   <h1>Task Calendar</h1>
-  <h3>{{ calendar.name }} Week View</h3>
-  <a href="{% url 'taskcalendar:week' calendar.slug %}"><h4>Weekly view</h4></a>
+  <h3>{{ calendar.name }} - This Week</h3>
+  <a href="{% url 'taskcalendar:day' calendar.slug %}"><h4>Today</a>
   <ol>
   {% for o in occurrences %}
     <li>
-      <p>{{ o.title }}<p>
-      <p>{{ o.start }}</p>
-      <p>{{ o.end }}</p>
+    <p>{{ o.title }} - {{ o.start|date:'M-d' }} thru {{ o.end|date:'M-d' }} <p>
     </li>
   {% endfor %}
   </ol>

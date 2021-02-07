@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Task Calendar</h1>
+  <h3>{{ calendar.name }} - Today</h3>
+  <a href="{% url 'taskcalendar:week' calendar.slug %}"><h4>back to weekly view</a>
+  <ol>
+  {% for o in occurrences %}
+    <li>
+      <p>{{ o.title }}<p>
+    </li>
+  {% endfor %}
+  </ol>
+{% endblock %}

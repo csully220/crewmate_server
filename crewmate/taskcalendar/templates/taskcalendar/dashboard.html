@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>{{ player.name }}'s Task Dashboard</h1>
+  <h3>This Week</h3>
+  <ol>
+  {% for o in occurrences %}
+    <li>
+      <p>{{ o.title }}<p>
+      <p>{{ o.start }}</p>
+      <p>{{ o.end }}</p>
+    </li>
+  {% endfor %}
+  </ol>
+  <h3>Today</h3>
+  <ol>
+  {% for o in occurrences %}
+    <li>
+      <p>{{ o.title }}<p>
+      <p>{{ o.start }}</p>
+      <p>{{ o.end }}</p>
+    </li>
+  {% endfor %}
+  </ol>
+{% endblock %}

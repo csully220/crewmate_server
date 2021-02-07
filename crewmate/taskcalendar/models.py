@@ -22,6 +22,8 @@ class Player(models.Model):
     calendar = models.ForeignKey('schedule.Calendar', on_delete=models.SET_NULL, null=True)
     created = models.DateTimeField(default=django.utils.timezone.now)
 
+    account_balance = models.DecimalField(max_digits=5, decimal_places=2, default=0)
+
     def get_tasks(self):
         tasks = Task.objects.all().filter(assignee=self)
         print(tasks)
@@ -53,4 +55,3 @@ class Task(schedule.models.Event):
 
     def __str__(self):
         return self.title
-

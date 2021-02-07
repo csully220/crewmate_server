@@ -8,9 +8,7 @@
   <ol>
   {% for o in occurrences %}
     <li>
-      <p>{{ o.title }}<p>
-      <p>{{ o.start }}</p>
-      <p>{{ o.end }}</p>
+        <p>{{ o.title }} - {{ o.start|date:'M-d' }} thru {{ o.end|date:'M-d' }} <p>
     </li>
   {% endfor %}
   </ol>

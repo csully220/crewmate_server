@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Task, Player
+from .models import Task, Player 
 
 # Register your models here.
 #class TaskAdmin(admin.ModelAdmin):

@@ -2,7 +2,7 @@ from django.urls import path
 from . import views
 
 from rest_framework import routers
-from .views import PlayerTasksViewSet, TasksViewSet, PlayerViewSet, CalendarViewSet, PlayerListViewSet, OccurrenceViewSet
+from .views import PlayerTasksViewSet, TasksViewSet, PlayerViewSet, CalendarViewSet, PlayerListViewSet, OccurrenceViewSet 
 
 router = routers.DefaultRouter()
 router.register('playertasks', PlayerTasksViewSet)
