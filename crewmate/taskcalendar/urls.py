@@ -10,4 +10,5 @@ urlpatterns = [ path('', views.index, name='index'),
         path('week/<slug:slug>/', views.week, name='week'),
         path('day/<slug:slug>/', views.day, name='day'),
         path('tasklist/', views.tasklist, name='tasklist'),
+        path('uicalendar/<slug:slug>', views.uicalendar, name='uicalendar'),
               ]

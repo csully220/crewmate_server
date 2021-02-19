@@ -59,3 +59,13 @@ def tasklist(request):
     context = {'tasks' : tasks}
     return render(request, 'taskcalendar/tasklist.html', context)
 
+def uicalendar(request, slug):
+    c= Calendar.objects.get(slug=slug)
+    ev = Task.objects.filter(calendar=c)
+    now = datetime.datetime.now(tz=datetime.timezone.utc)
+    p = Month(ev, now)
+    oc = p.get_occurrences()
+    context = {'calendar': c, 'occurrences':oc, 'period':p}
+    return render(request, 'taskcalendar/UICalendar.html', context)
+
+

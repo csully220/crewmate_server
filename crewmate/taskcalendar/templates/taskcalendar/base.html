@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Add additional CSS in static file -->
+  {% load static %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.min.css"/>
+
+  <script type="text/javascript">
+  $(document).ready(function() {
+    
+    $('#calendar').fullCalendar({
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,basicWeek,basicDay'
+      },
+      defaultDate: '{{ period.start|date:'Y-m-d' }}',
+      navLinks: true, // can click day/week names to navigate views
+      editable: true,
+      eventLimit: true, // allow "more" link when too many events
+      events: [
+        {% for oc in occurrences %}
+        {
+        title: '{{ oc.title }}',
+        start: '{{ oc.start|date:'Y-m-d' }}'
+        },
+        {% endfor %}
+      ]
+    });
+    
+  });
+  
+  </script>
+
+
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+{% block content %}{% endblock %}
+</body>
+</html>
