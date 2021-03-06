@@ -4,13 +4,17 @@ from schedule.models import Calendar, Occurrence
 from schedule.periods import Period, Week, Day, Month
 import datetime
 
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
+from rest_framework.decorators import api_view
+from rest_framework import permissions
 from rest_framework import viewsets
+from rest_framework import generics
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from .serializers import TaskSerializer, PlayerSerializer, OccurrenceSerializer, CalendarSerializer
 
 # Create your views here.
+
+#def updateOccurrence(request):
 
 class PlayerTasksViewSet(viewsets.ViewSet):
     queryset = Task.objects.all()
@@ -32,9 +36,11 @@ class PlayerListViewSet(viewsets.ModelViewSet):
     queryset = Player.objects.all()
     serializer_class = PlayerSerializer
 
+
 class OccurrenceViewSet(viewsets.ModelViewSet):
     queryset = Occurrence.objects.all()
     serializer_class = OccurrenceSerializer
+    permission_classes = [permissions.AllowAny]
 
     def list(self, request):
         playerid = self.request.GET.get('playerid')
@@ -53,7 +59,6 @@ class OccurrenceViewSet(viewsets.ModelViewSet):
         queryset = p.get_occurrences()
         serializer = OccurrenceSerializer(queryset, many=True)
         return Response(serializer.data)
-
 
 class CalendarViewSet(viewsets.ModelViewSet):
     queryset = Calendar.objects.all()

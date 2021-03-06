@@ -5,3 +5,4 @@ crewmate/tasker/migrations
 crewmate/tasks/migrations
 crewmate/taskcalendar/migrations
 *.pyc
+env/*
