@@ -1,12 +1,14 @@
 {% extends "taskcalendar/base.html" %}
 
 {% block content %}
-  <h1>Task Calendar</h1>
+<!--<h1>Task Calendar</h1>-->
 
 <div class="ui container">
-
+  {% for cal in calendar_list %}
+      <a href="{% url 'taskcalendar:uicalendar' cal.slug %}"><h4>{{ cal.name }}</h4></a>
+  {% endfor %}
   <div class="ui menu">
-    <div class="header item">Brand</div>
+    <div class="header item">Among Us Task Calendar</div>
     <a class="active item">Link</a>
     <a class="item">Link</a>
     <div class="ui dropdown item">

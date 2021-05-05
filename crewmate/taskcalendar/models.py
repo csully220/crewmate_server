@@ -55,3 +55,4 @@ class Task(schedule.models.Event):
 
     def __str__(self):
         return self.title
+

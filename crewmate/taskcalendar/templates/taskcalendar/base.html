@@ -29,8 +29,8 @@
       events: [
         {% for oc in occurrences %}
         {
-        title: '{{ oc.title }}',
-        start: '{{ oc.start|date:'Y-m-d' }}'
+        title: "{{ oc.title }}",
+        start: "{{ oc.start|date:'Y-m-d' }}",
         },
         {% endfor %}
       ]

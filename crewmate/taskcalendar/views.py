@@ -65,7 +65,8 @@ def uicalendar(request, slug):
     now = datetime.datetime.now(tz=datetime.timezone.utc)
     p = Month(ev, now)
     oc = p.get_occurrences()
-    context = {'calendar': c, 'occurrences':oc, 'period':p}
+    calendar_list = Calendar.objects.all()
+    context = {'calendar': c, 'occurrences':oc, 'period':p, 'calendar_list': calendar_list}
     return render(request, 'taskcalendar/UICalendar.html', context)
 
 
